@@ -1,13 +1,30 @@
-import { Typography } from "@mui/material";
+import { Card, CardContent, CardHeader, Grid, Typography } from "@mui/material";
 import { Layout } from "components/layouts";
 import type { NextPage } from "next";
 
 const HomePage: NextPage = () => {
   return (
     <Layout title="Jira Clone">
-      <Typography variant="h1" color="primary">
-        Hola Mudo
-      </Typography>
+      <Grid spacing={2} container>
+        <Grid item xs={12} sm={4}>
+          <Card sx={{ height: "calc(100vh - 100px)" }}>
+            <CardHeader title="Pendientes" />
+            <CardContent></CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Card sx={{ height: "calc(100vh - 100px)" }}>
+            <CardHeader title="En Progreso" />
+          </Card>
+        </Grid>
+
+        <Grid item xs={12} sm={4}>
+          <Card sx={{ height: "calc(100vh - 100px)" }}>
+            <CardHeader title="Completadas" />
+          </Card>
+        </Grid>
+      </Grid>
     </Layout>
   );
 };
