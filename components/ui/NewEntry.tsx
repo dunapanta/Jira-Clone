@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Button, TextField } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
+import { EntriesContext } from "context/enntries";
 
 export const NewEntry = () => {
   const [isAdding, setIsAdding] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [hasTouched, setHasTouched] = useState(false);
+  const { addNewEntry } = useContext(EntriesContext);
 
   const onChangeTextHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -14,7 +16,10 @@ export const NewEntry = () => {
 
   const onSaveHandler = () => {
     if (inputValue.length === 0) return;
-    console.log("Saving", inputValue);
+    addNewEntry(inputValue);
+    setIsAdding(false);
+    setHasTouched(false);
+    setInputValue("");
   };
 
   return (
