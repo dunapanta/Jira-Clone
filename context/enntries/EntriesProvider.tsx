@@ -17,25 +17,25 @@ const EntriesInitialState: EntriesState = {
   entries: [
     {
       _id: uuid(),
-      description: "Tarea 1",
+      description: "PENDIENTE Tarea 1",
       status: "pending",
       crearedAt: Date.now(),
     },
     {
       _id: uuid(),
-      description: "Tarea 2",
+      description: "PENDIENTE Tarea 2",
       status: "pending",
       crearedAt: Date.now(),
     },
     {
       _id: uuid(),
-      description: "Tarea 3",
+      description: "PROGRESO Tarea 3",
       status: "in-progress",
       crearedAt: Date.now() - 100000,
     },
     {
       _id: uuid(),
-      description: "Tarea 4",
+      description: "TERMINADA Tarea 4",
       status: "finished",
       crearedAt: Date.now(),
     },
