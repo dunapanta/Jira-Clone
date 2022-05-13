@@ -8,7 +8,7 @@ const HomePage: NextPage = () => {
     <Layout title="Jira Clone">
       <Grid spacing={2} container>
         <Grid item xs={12} sm={4}>
-          <Card sx={{ height: "calc(100vh - 100px)" }}>
+          <Card variant="outlined" sx={{ height: "calc(100vh - 100px)" }}>
             <CardHeader title="Pendientes" />
 
             <EntryList />
@@ -16,13 +16,13 @@ const HomePage: NextPage = () => {
         </Grid>
 
         <Grid item xs={12} sm={4}>
-          <Card sx={{ height: "calc(100vh - 100px)" }}>
+          <Card variant="outlined" sx={{ height: "calc(100vh - 100px)" }}>
             <CardHeader title="En Progreso" />
           </Card>
         </Grid>
 
         <Grid item xs={12} sm={4}>
-          <Card sx={{ height: "calc(100vh - 100px)" }}>
+          <Card variant="outlined" sx={{ height: "calc(100vh - 100px)" }}>
             <CardHeader title="Completadas" />
           </Card>
         </Grid>

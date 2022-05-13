@@ -6,11 +6,13 @@ export const EntryList = () => {
   return (
     <div>
       <Paper
+        variant="outlined"
         sx={{
           height: "calc(100vh-160px)",
           overflow: "scroll",
           backgroundColor: "transparent",
           padding: "1px 5px",
+          border: "1px solid #e0e0e0",
         }}
       >
         {/* Todo: drag o no */}

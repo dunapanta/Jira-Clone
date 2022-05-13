@@ -9,7 +9,7 @@ import React from "react";
 
 export const EntryCard = () => {
   return (
-    <Card sx={{ marginBottom: 1 }}>
+    <Card variant="outlined" sx={{ marginBottom: 2 }}>
       <CardActionArea>
         <CardContent>
           <Typography sx={{ whiteSpace: "pre-line" }}>
