@@ -3,12 +3,13 @@ import { Box, Button, TextField } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import AddIcon from "@mui/icons-material/Add";
 import { EntriesContext } from "context/enntries";
+import { UIContext } from "context/ui";
 
 export const NewEntry = () => {
-  const [isAdding, setIsAdding] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [hasTouched, setHasTouched] = useState(false);
-  const { addNewEntry } = useContext(EntriesContext);
+  const { addNewEntry,  } = useContext(EntriesContext);
+  const { isAddingEntry, setIsAddingEntry } = useContext(UIContext);
 
   const onChangeTextHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -17,14 +18,14 @@ export const NewEntry = () => {
   const onSaveHandler = () => {
     if (inputValue.length === 0) return;
     addNewEntry(inputValue);
-    setIsAdding(false);
+    setIsAddingEntry(false);
     setHasTouched(false);
     setInputValue("");
   };
 
   return (
     <Box sx={{ marginBottom: 2, padding: 2 }}>
-      {isAdding ? (
+      {isAddingEntry ? (
         <>
           {" "}
           <TextField
@@ -53,7 +54,7 @@ export const NewEntry = () => {
             <Button
               color="secondary"
               variant="outlined"
-              onClick={() => setIsAdding(false)}
+              onClick={() => setIsAddingEntry(false)}
               endIcon={<SaveIcon />}
             >
               Cancelar
@@ -63,7 +64,7 @@ export const NewEntry = () => {
       ) : (
         <Button
           variant="contained"
-          onClick={() => setIsAdding(true)}
+          onClick={() => setIsAddingEntry(true)}
           fullWidth
           startIcon={<AddIcon />}
         >
