@@ -5,7 +5,14 @@
 - Creo archivo `docker-compose.yaml`
 - Es necesario asignar un volumen (espacio físico de almacenamiento) para guardar los datos, porque si elimino la imagen se borraría la data por eso es necesario especificar el volumen
 - Levantar imagen
+
 ```
 docker-compose up -d
 ```
-* El -d significa __detached__, es decir, que el proceso no se detiene al finalizar ni al cerrar la terminal (corre en background)
+
+- El -d significa **detached**, es decir, que el proceso no se detiene al finalizar ni al cerrar la terminal (corre en background)
+
+## Clase 125 Variables de entorno
+
+- Para variables de entorno en frontend debe inicar con NEXT_PUBLIC_ `NEXT_PUBLIC_XXXXX`
+- Para variables de entorno en backend `XXXXX`

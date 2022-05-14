@@ -11,3 +11,7 @@ docker-compose up -d
 - El -d significa **detached**, es decir, que el proceso no se detiene al finalizar
 
 * Acceder a `mongodb://localhost:27017`
+
+## Configurar variables de entorno
+
+- Renombrar **.env.example** a **.env**
