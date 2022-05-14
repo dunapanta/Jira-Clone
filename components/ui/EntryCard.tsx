@@ -13,8 +13,21 @@ interface Props {
 }
 
 export const EntryCard: FC<Props> = ({ entry }) => {
+  const onDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+    console.log("drag start", event);
+    event.dataTransfer.setData("text", entry._id);
+  };
+
+  const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {};
+
   return (
-    <Card variant="outlined" sx={{ marginBottom: 2 }}>
+    <Card
+      variant="outlined"
+      draggable
+      sx={{ marginBottom: 2 }}
+      onDragStart={onDragStart}
+      onDragEnd={onDragOver}
+    >
       <CardActionArea>
         <CardContent>
           <Typography sx={{ whiteSpace: "pre-line" }}>

@@ -17,12 +17,21 @@ export const EntryList: FC<Props> = ({ status }) => {
     [entries]
   );
 
+  const onDropEntry = (event: React.DragEvent<HTMLDivElement>) => {
+    const id = event.dataTransfer.getData("text");
+    console.log("drop", id);
+  };
+
+  const allowDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+  };
+
   return (
-    <div>
+    <div onDrop={onDropEntry} onDragOver={allowDrop}>
       <Paper
         variant="outlined"
         sx={{
-          height: "calc(100vh-160px)",
+          height: "calc(100vh - 160px)",
           overflow: "scroll",
           backgroundColor: "transparent",
           padding: "1px 5px",
