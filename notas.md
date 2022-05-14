@@ -14,5 +14,14 @@ docker-compose up -d
 
 ## Clase 125 Variables de entorno
 
-- Para variables de entorno en frontend debe inicar con NEXT_PUBLIC_ `NEXT_PUBLIC_XXXXX`
+- Para variables de entorno en frontend debe inicar con NEXT*PUBLIC* `NEXT_PUBLIC_XXXXX`
 - Para variables de entorno en backend `XXXXX`
+
+## Clase 127 Diferencia entre backend nextjs y node con mongo
+
+- Al definir el esquema y que no se vuelva a definir lo correcto seria
+
+```
+const EntryModel: Model<IEntry> =
+  mongoose.models.Entry || mongoose.model("Entry", entrySchema);
+```
