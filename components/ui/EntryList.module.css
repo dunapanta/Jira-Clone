@@ -1,0 +1,5 @@
+.dragging {
+  background-color: #f1efef;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+}
