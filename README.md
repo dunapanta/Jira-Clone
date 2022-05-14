@@ -15,3 +15,11 @@ docker-compose up -d
 ## Configurar variables de entorno
 
 - Renombrar **.env.example** a **.env**
+
+## Llenar base de datos con datos de prueba
+- Ejecutar endpoint:
+```
+http://localhost:3001/api/seed
+```
+
+```

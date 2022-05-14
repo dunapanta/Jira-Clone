@@ -14,32 +14,7 @@ export interface EntriesState {
 }
 
 const EntriesInitialState: EntriesState = {
-  entries: [
-    {
-      _id: uuid(),
-      description: "PENDIENTE Tarea 1",
-      status: "pending",
-      crearedAt: Date.now(),
-    },
-    {
-      _id: uuid(),
-      description: "PENDIENTE Tarea 2",
-      status: "pending",
-      crearedAt: Date.now(),
-    },
-    {
-      _id: uuid(),
-      description: "PROGRESO Tarea 3",
-      status: "in-progress",
-      crearedAt: Date.now() - 100000,
-    },
-    {
-      _id: uuid(),
-      description: "TERMINADA Tarea 4",
-      status: "finished",
-      crearedAt: Date.now(),
-    },
-  ],
+  entries: [],
 };
 
 export const EntriesProvider: FC<Props> = ({ children }: Props) => {
@@ -58,7 +33,7 @@ export const EntriesProvider: FC<Props> = ({ children }: Props) => {
 
   const updateEntry = (entry: Entry) => {
     dispatch({ type: "Entry - Update-Entry", payload: entry });
-  }
+  };
 
   return (
     <EntriesContext.Provider value={{ ...state, addNewEntry, updateEntry }}>
