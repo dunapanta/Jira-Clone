@@ -1,7 +1,7 @@
 import { Entry } from "interfaces";
 import mongoose, { Model, Schema } from "mongoose";
 
-interface IEntry extends Entry {}
+export interface IEntry extends Entry {}
 
 const entrySchema = new Schema({
   description: { type: String, required: true },
