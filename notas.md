@@ -25,3 +25,7 @@ docker-compose up -d
 const EntryModel: Model<IEntry> =
   mongoose.models.Entry || mongoose.model("Entry", entrySchema);
 ```
+
+## Clase 137 Middleware en Nextjs
+
+- Funcion que se ejecuta antes de otras funciones

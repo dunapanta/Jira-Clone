@@ -13,10 +13,10 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const { id } = req.query;
+  /* const { id } = req.query;
   if (!mongoose.isValidObjectId(id)) {
     return res.status(400).json({ message: "El id no es válido " + id });
-  }
+  } */
 
   switch (req.method) {
     case "PUT":
