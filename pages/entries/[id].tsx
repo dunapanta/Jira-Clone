@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   capitalize,
   Button,
@@ -24,12 +24,33 @@ import { EntryStatus } from "interfaces";
 const validStatus: EntryStatus[] = ["pending", "in-progress", "finished"];
 
 export const EntryPage = () => {
+  const [inputValue, setInputValue] = useState("");
+  const [status, setStatus] = useState<EntryStatus>("pending");
+  const [touched, setTouched] = useState(false);
+
+  const onChangeTextHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const onStatusChangeHandler = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setStatus(event.target.value as EntryStatus);
+  };
+
+  const onSaveHandler = () => {
+    console.log(inputValue, status);
+  };
+
   return (
     <Layout title="">
       <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
         <Grid item xs={12} sm={8} md={6}>
           <Card>
-            <CardHeader title="Entrada:" subheader={`Creada hace .. minutos`} />
+            <CardHeader
+              title={`Entrada: ${inputValue}`}
+              subheader={`Creada hace .. minutos`}
+            />
             <CardContent>
               <TextField
                 sx={{ marginTop: 2, marginBottom: 1 }}
@@ -38,10 +59,12 @@ export const EntryPage = () => {
                 autoFocus
                 multiline
                 label="Tarea"
+                value={inputValue}
+                onChange={onChangeTextHandler}
               />
               <FormControl>
                 <FormLabel>Estado:</FormLabel>
-                <RadioGroup row>
+                <RadioGroup row value={status} onChange={onStatusChangeHandler}>
                   {validStatus.map((status) => (
                     <FormControlLabel
                       key={status}
@@ -54,7 +77,12 @@ export const EntryPage = () => {
               </FormControl>
             </CardContent>
             <CardActions>
-              <Button variant="outlined" fullWidth endIcon={<SaveIcon />}>
+              <Button
+                variant="outlined"
+                onClick={onSaveHandler}
+                fullWidth
+                endIcon={<SaveIcon />}
+              >
                 Guardar
               </Button>
             </CardActions>
