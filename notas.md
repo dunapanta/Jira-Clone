@@ -29,3 +29,7 @@ const EntryModel: Model<IEntry> =
 ## Clase 137 Middleware en Nextjs
 
 - Funcion que se ejecuta antes de otras funciones
+
+## Clase 148 getServerSideProps
+- Se debe utilizar getServerSideProps solo si se necesita prerenderizar una página en que sus datos debe obtenerse por medio de una peticion
+
