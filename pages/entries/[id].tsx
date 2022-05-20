@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   capitalize,
   Button,
@@ -27,6 +27,11 @@ export const EntryPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [status, setStatus] = useState<EntryStatus>("pending");
   const [touched, setTouched] = useState(false);
+
+  const isNotValid = useMemo(
+    () => inputValue.length <= 0 && touched,
+    [inputValue, touched]
+  );
 
   const onChangeTextHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -61,6 +66,9 @@ export const EntryPage = () => {
                 label="Tarea"
                 value={inputValue}
                 onChange={onChangeTextHandler}
+                helperText={isNotValid && "Ingrese un valor"}
+                onBlur={() => setTouched(true)}
+                error={isNotValid}
               />
               <FormControl>
                 <FormLabel>Estado:</FormLabel>
@@ -82,6 +90,7 @@ export const EntryPage = () => {
                 onClick={onSaveHandler}
                 fullWidth
                 endIcon={<SaveIcon />}
+                disabled={inputValue.length <= 0}
               >
                 Guardar
               </Button>
