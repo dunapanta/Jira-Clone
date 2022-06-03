@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Entry } from "interfaces";
 import { UIContext } from "context/ui";
+import { useRouter } from "next/router";
 
 interface Props {
   entry: Entry;
@@ -19,13 +20,19 @@ export const EntryCard: FC<Props> = ({ entry }) => {
     event.dataTransfer.setData("text", entry._id);
     startDragging();
   };
+  const router = useRouter();
 
   const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
     endDragging();
   };
 
+  const onEditHandler = () => {
+    router.push(`/entries/${entry._id}`);
+  };
+
   return (
     <Card
+      onClick={onEditHandler}
       variant="outlined"
       draggable
       sx={{ marginBottom: 2 }}
