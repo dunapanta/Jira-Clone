@@ -30,11 +30,9 @@ interface Props {
   entry: Entry;
 }
 
-export const EntryPage: FC<Props> = (props) => {
-  console.log(props);
-
-  const [inputValue, setInputValue] = useState("");
-  const [status, setStatus] = useState<EntryStatus>("pending");
+export const EntryPage: FC<Props> = ({ entry }) => {
+  const [inputValue, setInputValue] = useState(entry.description);
+  const [status, setStatus] = useState<EntryStatus>(entry.status);
   const [touched, setTouched] = useState(false);
 
   const isNotValid = useMemo(
@@ -57,13 +55,13 @@ export const EntryPage: FC<Props> = (props) => {
   };
 
   return (
-    <Layout title="">
+    <Layout title={inputValue.substring(0, 20) + "..."}>
       <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
         <Grid item xs={12} sm={8} md={6}>
           <Card>
             <CardHeader
-              title={`Entrada: ${inputValue}`}
-              subheader={`Creada hace .. minutos`}
+              title={`Entrada:`}
+              subheader={`Creada hace: ${entry.crearedAt} minutos`}
             />
             <CardContent>
               <TextField
