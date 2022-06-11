@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import React, { FC, useContext, useMemo, useState } from "react";
 import {
   capitalize,
   Button,
@@ -23,6 +23,7 @@ import { Layout } from "components/layouts";
 import { Entry, EntryStatus } from "interfaces";
 import { isValidObjectId } from "mongoose";
 import { dbEntries } from "database";
+import { EntriesContext } from "context/enntries";
 
 const validStatus: EntryStatus[] = ["pending", "in-progress", "finished"];
 
@@ -31,6 +32,8 @@ interface Props {
 }
 
 export const EntryPage: FC<Props> = ({ entry }) => {
+  const { updateEntry } = useContext(EntriesContext);
+
   const [inputValue, setInputValue] = useState(entry.description);
   const [status, setStatus] = useState<EntryStatus>(entry.status);
   const [touched, setTouched] = useState(false);
@@ -51,7 +54,13 @@ export const EntryPage: FC<Props> = ({ entry }) => {
   };
 
   const onSaveHandler = () => {
-    console.log(inputValue, status);
+    if (inputValue.trim().length === 0) return;
+    const updatedEntry: Entry = {
+      ...entry,
+      status,
+      description: inputValue,
+    };
+    updateEntry(updatedEntry, true);
   };
 
   return (

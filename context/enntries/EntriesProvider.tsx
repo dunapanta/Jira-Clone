@@ -1,8 +1,10 @@
 import { FC, useEffect, useReducer } from "react";
+import { useSnackbar } from "notistack";
 
 import { Entry } from "interfaces";
 import { EntriesContext, entriesReducer } from "./";
 import { entriesApi } from "apis";
+import { useRouter } from "next/router";
 
 interface Props {
   children: React.ReactNode;
@@ -18,6 +20,8 @@ const EntriesInitialState: EntriesState = {
 
 export const EntriesProvider: FC<Props> = ({ children }: Props) => {
   const [state, dispatch] = useReducer(entriesReducer, EntriesInitialState);
+  const { enqueueSnackbar } = useSnackbar();
+  const router = useRouter();
 
   const refreshEntries = async () => {
     const { data: entrys } = await entriesApi.get<Entry[]>("/entries");
@@ -39,13 +43,24 @@ export const EntriesProvider: FC<Props> = ({ children }: Props) => {
     }
   };
 
-  const updateEntry = async (entry: Entry) => {
+  const updateEntry = async (entry: Entry, isEditing = false) => {
     try {
       const { data: newEntry } = await entriesApi.put<Entry>(
         `/entries/${entry._id}`,
         { description: entry.description, status: entry.status }
       );
       dispatch({ type: "Entry - Update-Entry", payload: newEntry });
+      enqueueSnackbar("Entry updated successfully", {
+        variant: "success",
+        autoHideDuration: 2000,
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right",
+        },
+      });
+      if (isEditing) {
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
     }
