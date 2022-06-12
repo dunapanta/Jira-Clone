@@ -66,8 +66,28 @@ export const EntriesProvider: FC<Props> = ({ children }: Props) => {
     }
   };
 
+  const deleteEntry = async (entry: Entry) => {
+    try {
+      await entriesApi.delete(`/entries/${entry._id}`);
+      dispatch({ type: "Entry - Delete-Entry", payload: entry });
+      enqueueSnackbar("Entry deleted successfully", {
+        variant: "success",
+        autoHideDuration: 2000,
+        anchorOrigin: {
+          vertical: "top",
+          horizontal: "right",
+        },
+      });
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <EntriesContext.Provider value={{ ...state, addNewEntry, updateEntry }}>
+    <EntriesContext.Provider
+      value={{ ...state, addNewEntry, updateEntry, deleteEntry }}
+    >
       {children}
     </EntriesContext.Provider>
   );

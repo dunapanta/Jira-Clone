@@ -23,6 +23,8 @@ export default function handler(
       return updateEntry(req, res);
     case "GET":
       return getEntry(req, res);
+    case "DELETE":
+      return deleteEntry(req, res);
     default:
       return res.status(405).json({ message: "Method not allowed" });
   }
@@ -80,5 +82,28 @@ const updateEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.disconnect();
     console.log(e);
     return res.status(400).json({ message: "Error al actualizar" });
+  }
+};
+
+const deleteEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  const { id } = req.query;
+
+  await db.connect();
+
+  const entryToDelete = await Entry.findById(id);
+
+  if (!entryToDelete) {
+    await db.disconnect();
+    return res.status(404).json({ message: "El id no existe" });
+  }
+
+  try {
+    await Entry.findByIdAndDelete(id);
+    await db.disconnect();
+    return res.status(200).json({ message: "El registro se ha eliminado" });
+  } catch (e) {
+    await db.disconnect();
+    console.log(e);
+    return res.status(400).json({ message: "Error al eliminar" });
   }
 };
