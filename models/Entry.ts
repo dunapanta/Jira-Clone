@@ -5,7 +5,7 @@ export interface IEntry extends Entry {}
 
 const entrySchema = new Schema({
   description: { type: String, required: true },
-  crearedAt: { type: Number },
+  createdAt: { type: Number, default: Date.now() },
   status: {
     type: String,
     enum: {

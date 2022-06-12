@@ -24,6 +24,7 @@ import { Entry, EntryStatus } from "interfaces";
 import { isValidObjectId } from "mongoose";
 import { dbEntries } from "database";
 import { EntriesContext } from "context/enntries";
+import { dateFunctions } from "utils";
 
 const validStatus: EntryStatus[] = ["pending", "in-progress", "finished"];
 
@@ -70,7 +71,9 @@ export const EntryPage: FC<Props> = ({ entry }) => {
           <Card>
             <CardHeader
               title={`Entrada:`}
-              subheader={`Creada hace: ${entry.crearedAt} minutos`}
+              subheader={`hace ${dateFunctions.getFormattedDate(
+                entry.createdAt
+              )}`}
             />
             <CardContent>
               <TextField
