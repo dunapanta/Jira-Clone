@@ -5,7 +5,7 @@
 
 ## Gif
 ### Aplicación
-<img src="./gif/jira-clone.gif" height="70%" width="80%">
+<img src="./gif/jira-clone.gif" height="80%" width="90%">
 
 
 ## Levantar BD
@@ -28,8 +28,6 @@ docker-compose up -d
 - Ejecutar endpoint:
 ```
 http://localhost:3001/api/seed
-```
-
 ```
 
 ## Lo Aprendido
